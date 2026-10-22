@@ -1,26 +1,90 @@
-@import "tailwindcss";
+ @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant can-hover (@media (hover: hover) and (pointer: fine));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  /* Colour */
+  /* --color-background: #f5f5dc;
+  --color-surface: #e4d5b4;
+  --color-tan: #d2b48c;
+  --color-accent: #9d825d;
+  --color-primary: #674f2d;
+  --color-foreground: #2b2116;
+  --color-line: rgb(103 79 45 / 0.18); */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Colour */
+  --color-background: #f7f2ea;  /* warm ivory — same hue family as Tan/Dutch white */
+  --color-surface: #e4d5b4;
+  --color-tan: #d2b48c;
+  --color-accent: #9d825d;
+  --color-primary: #674f2d;
+  --color-foreground: #2b2116;
+  --color-line: rgb(103 79 45 / 0.18);
+
+  /* Fluid type scale */
+  --text-display: clamp(3rem, 1.5rem + 7vw, 9rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-h1: clamp(2.5rem, 1.6rem + 4vw, 5.5rem);
+  --text-h1--line-height: 1;
+  --text-h1--letter-spacing: -0.015em;
+
+  --text-h2: clamp(2rem, 1.4rem + 2.6vw, 4rem);
+  --text-h2--line-height: 1.05;
+
+  --text-h3: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  --text-h3--line-height: 1.15;
+
+  --text-lead: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-lead--line-height: 1.6;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--letter-spacing: 0.24em;
+
+  /* Motion */
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-marquee: marquee 45s linear infinite;
+  --color-danger: #9b2c2c;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+
+@theme inline {
+  --font-display: var(--font-bodoni);
+  --font-body: var(--font-manrope);
+}
+
+@utility container-luxe {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 90rem;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+@utility px-gutter {
+  padding-inline: max(clamp(1.25rem, 4vw, 3rem), calc((100vw - 90rem) / 2 + clamp(1.25rem, 4vw, 3rem)));
+}
+
+@utility scroll-px-gutter {
+  scroll-padding-inline: max(clamp(1.25rem, 4vw, 3rem), calc((100vw - 90rem) / 2 + clamp(1.25rem, 4vw, 3rem)));
+}
+
+@layer base {
+  html {
+    background-color: var(--color-background);
+  }
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-background);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
 }
