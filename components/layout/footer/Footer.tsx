@@ -13,8 +13,13 @@ import { Wordmark } from "./Wordmark";
 const link = "text-background/75 transition-colors duration-300 hover:text-background";
 const heading = "mb-6 text-eyebrow uppercase text-tan";
 
-export function Footer() {
-  const year = new Date().getFullYear();
+async function getYear() {
+  "use cache";
+  return new Date().getFullYear();
+}
+
+export async function Footer() {
+  const year = await getYear();
 
   return (
     <footer className="relative overflow-hidden bg-foreground text-background">
